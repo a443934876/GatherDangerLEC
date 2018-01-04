@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="25"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#fcfafa"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#339999">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/banner" />
+
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/chart_bar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4" />
+
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/spread_pie_chart1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/spread_pie_chart2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/spread_pie_chart3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4" />
+        </LinearLayout>
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/mapView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5" />
+
+    </LinearLayout>
+
+    <TextView
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#E4E4E4"
+        android:textSize="9sp"
+        android:textColor="#3B3B3B"
+        android:text="漳州柏华木业有限公司本周发现隐患6条，其中重大1条，已整改3条。           漳州柏华木业有限公司本周发现隐患6条，其中重大1条，已整改3条。"/>
+</LinearLayout>
