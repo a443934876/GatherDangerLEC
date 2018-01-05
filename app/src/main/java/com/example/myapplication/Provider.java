@@ -24,7 +24,7 @@ import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
 
 /**
- * 项目名称：MyApplication9
+ * 项目名称：
  * 创建时间：2017/12/26 8:51
  * 注释说明：
  */
