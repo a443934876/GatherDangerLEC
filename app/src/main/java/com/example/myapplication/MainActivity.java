@@ -209,14 +209,14 @@ public class MainActivity extends Activity {
 
     }
 
-    private void showChart(PieChart pieChart, PieData pieData, String label, int leftSize, int topSize) {
+    private void showChart(PieChart pieChart, PieData pieData, String label, int leftSize, int rightSize) {
 //        pieChart.setHoleColorTransparent(true);
         pieChart.setHoleRadius(60f);  //半径
         pieChart.setTransparentCircleRadius(64f); // 半透明圈
         //pieChart.setHoleRadius(0)  //实心圆
         pieChart.setDrawCenterText(true);  //饼状图中间可以添加文字
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setExtraOffsets(leftSize, 0, topSize, 0);
+        pieChart.setExtraOffsets(leftSize, 0, rightSize, 0);
         pieChart.setRotationAngle(0); // 初始旋转角度
         pieChart.setRotationEnabled(true); // 可以手动旋转
         pieChart.setUsePercentValues(true);  //显示成百分比
@@ -257,7 +257,7 @@ public class MainActivity extends Activity {
     private PieData getPieData(List<RiskLevelInfo> value) {
         ArrayList<PieEntry> yValues = new ArrayList<>();  //yVals用来表示封装每个饼块的实际数据
         // 饼图数据
-        /**
+        /*
          * 将一个饼形图分成四部分， 四部分的数值比例为14:14:34:38
          * 所以 14代表的百分比就是14%
          */
@@ -268,13 +268,13 @@ public class MainActivity extends Activity {
         //y轴的集合
         PieDataSet pieDataSet = new PieDataSet(yValues, null);
         pieDataSet.setSliceSpace(0.5f); //设置个饼状图之间的距离
-        ArrayList<Integer> colors = new ArrayList<Integer>();
+        ArrayList<Integer> colors = new ArrayList<>();
         // 饼图颜色
         List<String> list = new ArrayList<>();
         for (int i = 0; i < value.size(); i++) {
             list.add(getRandColorCode());
             for (int j = 0; j<list.size(); j++){
-                if (list.get(j)==getRandColorCode()){
+                if (list.get(j).equals(getRandColorCode())){
                     list.add(j,getRandColorCode());
                 }
             }
@@ -399,15 +399,15 @@ public class MainActivity extends Activity {
 
     private void initView() {
         //获取地图控件引用
-        mMapView = (MapView) findViewById(R.id.mapView);
+        mMapView =  findViewById(R.id.mapView);
         mMapView.removeViewAt(1);
         //获取百度地图
         mBaiduMap = mMapView.getMap();
         //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-        mChart1 = (PieChart) findViewById(R.id.spread_pie_chart1);
-        mChart2 = (PieChart) findViewById(R.id.spread_pie_chart2);
-        mChart3 = (PieChart) findViewById(R.id.spread_pie_chart3);
+        mChart1 = findViewById(R.id.spread_pie_chart1);
+        mChart2 =  findViewById(R.id.spread_pie_chart2);
+        mChart3 = findViewById(R.id.spread_pie_chart3);
 
     }
 

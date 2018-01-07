@@ -56,11 +56,10 @@ public class Provider {
     }
     public static Observable<List<RiskLevelInfo>>
     getHiddenIllnessInfoTime(final String uEmid, final String methodName) {
-        return Observable.interval(10, 10 * 1000, TimeUnit.MILLISECONDS)
+        return Observable.interval(10, 20 * 1000, TimeUnit.MILLISECONDS)
                 .flatMap(new Function<Long, ObservableSource<List<RiskLevelInfo>>>() {
                     @Override
                     public ObservableSource<List<RiskLevelInfo>> apply(Long aLong) throws Exception {
-                        Log.e("TAG", "getHiddenIllnessInfoTime apply: " + aLong);
                         return Observable.create(new ObservableOnSubscribe<List<RiskLevelInfo>>() {
                             @Override
                             public void subscribe(ObservableEmitter<List<RiskLevelInfo>> e) throws Exception {
