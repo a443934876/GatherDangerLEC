@@ -48,12 +48,9 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivity extends Activity {
     private MapView mMapView = null;
     private BaiduMap mBaiduMap;
-    private List<GatherDangerInfo> mGatherDangerInfo = new ArrayList<>();
     private PieChart mChart1;
     private PieChart mChart2;
     private PieChart mChart3;
-    private BarChart barChart;
-    private List<TypeInfo> list;
     private Disposable timeDisposable;
 
     @Override
@@ -131,7 +128,7 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void onNext(List<TypeInfo> value) {
-                        BarChart barChart1 = (BarChart) findViewById(R.id.chart_bar);
+                        BarChart barChart1 = findViewById(R.id.chart_bar);
                         BarChartManager barChartManager1 = new BarChartManager(barChart1);
                         //设置x轴的数据
                         ArrayList<Float> xValues = new ArrayList<>();
@@ -258,7 +255,7 @@ public class MainActivity extends Activity {
     }
 
     private PieData getPieData(List<RiskLevelInfo> value) {
-        ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();  //yVals用来表示封装每个饼块的实际数据
+        ArrayList<PieEntry> yValues = new ArrayList<>();  //yVals用来表示封装每个饼块的实际数据
         // 饼图数据
         /**
          * 将一个饼形图分成四部分， 四部分的数值比例为14:14:34:38
@@ -302,7 +299,7 @@ public class MainActivity extends Activity {
         OverlayManager mOverlayManager = new OverlayManager(mBaiduMap) {
             @Override
             public List<OverlayOptions> getOverlayOptions() {
-                List<OverlayOptions> options = new ArrayList<OverlayOptions>();
+                List<OverlayOptions> options = new ArrayList<>();
                 for (GatherDangerInfo info : mGatherDangerInfo) {
                     if (info.getLecgoal() > 320) {
                         LatLng point = new LatLng(info.getLat(), info.getLon());
