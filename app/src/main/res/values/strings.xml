@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">漳州蓝田经济开发区安全生产信息化管理系统</string>
     <string name="text">漳州蓝田经济开发区安全生产信息化管理系统</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textContent">漳州柏华木业有限公司本周发现隐患6条，其中重大1条，已整改3条。 漳州柏华木业有限公司本周发现隐患6条，其中重大1条，已整改3条。</string>
 </resources>

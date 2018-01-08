@@ -26,6 +26,7 @@ import com.example.myapplication.Info.RiskLevelInfo;
 import com.example.myapplication.Info.TypeInfo;
 import com.example.myapplication.Util.BarChartManager;
 import com.example.myapplication.Util.OverlayManager;
+import com.github.androidprogresslayout.ProgressLayout;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -60,6 +61,8 @@ public class MainActivity extends Activity {
         //注意该方法要再setContentView方法之前实现
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_main);
+        final ProgressLayout progressLayout = findViewById(R.id.progress_layout);
+        progressLayout.showProgress();
         //初始化控件
         initView();
         Provider.getDangerDetailTime(75908, "", 0, 0)
@@ -73,6 +76,7 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void onNext(List<GatherDangerInfo> value) {
+                        progressLayout.showContent();
                         intiData(value);
                     }
 
