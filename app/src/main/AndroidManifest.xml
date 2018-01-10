@@ -28,7 +28,9 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="97G4iH3I67MCrQmeTOniSHHSE8N2i5X9" />
-        <activity android:name=".MainActivity"
+
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

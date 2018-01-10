@@ -6,6 +6,8 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -43,6 +45,7 @@ import java.util.Random;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -52,7 +55,7 @@ public class MainActivity extends Activity {
     private PieChart mChart1;
     private PieChart mChart2;
     private PieChart mChart3;
-    private Disposable timeDisposable;
+    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,7 @@ public class MainActivity extends Activity {
                 .subscribe(new Observer<List<GatherDangerInfo>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                                mCompositeDisposable.add(d);
                     }
 
                     @Override
@@ -82,7 +85,8 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressLayout.showContent();
                     }
 
                     @Override
@@ -96,7 +100,7 @@ public class MainActivity extends Activity {
                 .subscribe(new Observer<CompanyInfo>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        timeDisposable=d;
+                        mCompositeDisposable.add(d);
                     }
                     @Override
                     public void onNext(CompanyInfo value) {
@@ -117,6 +121,8 @@ public class MainActivity extends Activity {
 
                     }
                 });
+
+
     }
 
     public void getSafetyIndexFromCom(final String id) {
@@ -127,7 +133,7 @@ public class MainActivity extends Activity {
                 .subscribe(new Observer<List<TypeInfo>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        timeDisposable=d;
+                        mCompositeDisposable.add(d);
                     }
 
                     @Override
@@ -183,7 +189,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void onSubscribe(Disposable d) {
 
-                        timeDisposable = d;
+                        mCompositeDisposable.add(d);
                     }
 
                     @Override
@@ -420,8 +426,8 @@ public class MainActivity extends Activity {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onDestroy();
-        if (timeDisposable != null) {
-            timeDisposable.dispose();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
         }
     }
 
@@ -446,7 +452,7 @@ public class MainActivity extends Activity {
                 .subscribe(new Observer<List<RiskLevelInfo>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        mCompositeDisposable.add(d);
                     }
 
                     @Override
@@ -483,7 +489,7 @@ public class MainActivity extends Activity {
                 .subscribe(new Observer<List<RiskLevelInfo>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        mCompositeDisposable.add(d);
                     }
 
                     @Override
@@ -520,7 +526,7 @@ public class MainActivity extends Activity {
                 .subscribe(new Observer<List<RiskLevelInfo>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        mCompositeDisposable.add(d);
                     }
 
                     @Override

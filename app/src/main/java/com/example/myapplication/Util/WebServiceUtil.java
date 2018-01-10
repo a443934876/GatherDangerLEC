@@ -6,6 +6,7 @@ import org.ksoap2.serialization.MarshalFloat;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -117,8 +118,7 @@ public class WebServiceUtil {
         }
     }
 
-    public static ArrayList<HashMap<String, Object>> getWebServiceMsg(
-            String[] keys, Object[] values, String methodName) throws Exception {
+    public static ArrayList<HashMap<String, Object>> getWebServiceMsg(String[] keys, Object[] values, String methodName) throws Exception {
         String actionUrl = WEBSERVICE_NAMESPACE + methodName;
         SoapObject so = new SoapObject(WEBSERVICE_NAMESPACE, methodName);
         if (keys != null) {
