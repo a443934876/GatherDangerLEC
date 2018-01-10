@@ -1,9 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.myapplication.LoginActivity">
+    android:orientation="vertical"
+    android:background="#0994fd">
+    <ImageView
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:src="@mipmap/banner"/>
+    <LinearLayout
+        android:paddingTop="50dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</android.support.constraint.ConstraintLayout>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="#FFFFFF"
+                android:scaleType="center"
+                android:src="@mipmap/zhanghao_icon" />
+
+            <EditText
+                android:id="@+id/zhanghao_edt"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="#FFFFFF"
+                android:hint="请输入用户名" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#999999" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="#FFFFFF"
+                android:scaleType="center"
+                android:src="@mipmap/mima_icon" />
+
+            <EditText
+                android:id="@+id/mima_edt"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="#FFFFFF"
+                android:hint="请输入密码"
+                android:password="true" />
+
+            <ImageView
+                android:id="@+id/jzmm"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/bnt02"
+                android:clickable="true"
+                android:onClick="jzmm" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#999999" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="#FFFFFF"
+                android:scaleType="center"
+                android:src="@mipmap/yzm_icon" />
+
+            <EditText
+                android:id="@+id/yzm_edt"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="#FFFFFF"
+                android:ems="4"
+                android:hint="验证码"
+                android:maxLength="6" />
+
+            <ImageView
+                android:id="@+id/yzm_iv"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:onClick="changeYzm" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/main_loginbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="登　录"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
