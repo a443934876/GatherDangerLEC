@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
                 .subscribe(new Observer<List<GatherDangerInfo>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                                mCompositeDisposable.add(d);
+                        mCompositeDisposable.add(d);
                     }
 
                     @Override
@@ -104,12 +104,13 @@ public class MainActivity extends Activity {
                     public void onSubscribe(Disposable d) {
                         mCompositeDisposable.add(d);
                     }
+
                     @Override
                     public void onNext(CompanyInfo value) {
                         getSafetyIndexFromCom(value.getComId());
                         getHiddenIllnessAccountObject(value.getEmid());
-                        getHiddenIllnessRiskLevel(value.getEmid(),"getHiddenIllnessRiskLevel");
-                        getHiddenIllnessClassify(value.getEmid(),"getHiddenIllnessClassify");
+                        getHiddenIllnessRiskLevel(value.getEmid(), "getHiddenIllnessRiskLevel");
+                        getHiddenIllnessClassify(value.getEmid(), "getHiddenIllnessClassify");
                         getHiddenIllnessInjurycategory(value.getEmid(), "getHiddenIllnessInjurycategory");
                     }
 
@@ -285,9 +286,9 @@ public class MainActivity extends Activity {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < value.size(); i++) {
             list.add(getRandColorCode());
-            for (int j = 0; j<list.size(); j++){
-                if (list.get(j).equals(getRandColorCode())){
-                    list.add(j,getRandColorCode());
+            for (int j = 0; j < list.size(); j++) {
+                if (list.get(j).equals(getRandColorCode())) {
+                    list.add(j, getRandColorCode());
                 }
             }
             colors.add(Color.parseColor(list.get(i)));
@@ -411,14 +412,14 @@ public class MainActivity extends Activity {
 
     private void initView() {
         //获取地图控件引用
-        mMapView =  findViewById(R.id.mapView);
+        mMapView = findViewById(R.id.mapView);
         mMapView.removeViewAt(1);
         //获取百度地图
         mBaiduMap = mMapView.getMap();
         //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mChart1 = findViewById(R.id.spread_pie_chart1);
-        mChart2 =  findViewById(R.id.spread_pie_chart2);
+        mChart2 = findViewById(R.id.spread_pie_chart2);
         mChart3 = findViewById(R.id.spread_pie_chart3);
 
     }
@@ -447,8 +448,8 @@ public class MainActivity extends Activity {
         mMapView.onPause();
     }
 
-    public void getHiddenIllnessRiskLevel(String uEmid,String methodName) {
-        Provider.getHiddenIllnessInfoTime(uEmid,methodName)
+    public void getHiddenIllnessRiskLevel(String uEmid, String methodName) {
+        Provider.getHiddenIllnessInfoTime(uEmid, methodName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<List<RiskLevelInfo>>() {
@@ -484,8 +485,8 @@ public class MainActivity extends Activity {
 
     }
 
-    public void getHiddenIllnessClassify(String uEmid,String methodName) {
-        Provider.getHiddenIllnessInfoTime(uEmid,methodName)
+    public void getHiddenIllnessClassify(String uEmid, String methodName) {
+        Provider.getHiddenIllnessInfoTime(uEmid, methodName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<List<RiskLevelInfo>>() {
@@ -517,8 +518,6 @@ public class MainActivity extends Activity {
 
                     }
                 });
-
-
     }
 
     public void getHiddenIllnessInjurycategory(String uEmid, String methodName) {
@@ -554,12 +553,16 @@ public class MainActivity extends Activity {
 
                     }
                 });
-
-
     }
+
     public static void start(Context context) {
         Intent starter = new Intent(context, MainActivity.class);
         context.startActivity(starter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
 

@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
@@ -150,5 +152,9 @@ public class LoginActivity extends Activity implements  ILoginPresenter.IView {
         if (mPresenter != null) {
             mPresenter.onDestroy();
         }
+    }
+    public static void start(Context context) {
+        Intent starter = new Intent(context, LoginActivity.class);
+        context.startActivity(starter);
     }
 }
