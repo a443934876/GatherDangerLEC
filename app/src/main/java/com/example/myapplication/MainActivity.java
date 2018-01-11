@@ -7,8 +7,10 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -38,12 +40,14 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -76,7 +80,7 @@ public class MainActivity extends Activity {
         String companyInfoString = SharedPreferenceUtil.getString(this, AppConstant.SP_KEY_COMPANY_INFO);
         try {
             userInfo = UserInfo.fromString(userInfoString);
-             info = CompanyInfo.fromString(companyInfoString);
+            info = CompanyInfo.fromString(companyInfoString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,6 +111,7 @@ public class MainActivity extends Activity {
 
                     }
                 });
+
         Provider.getCompanyList(userInfo.getUid())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -136,8 +141,8 @@ public class MainActivity extends Activity {
                     }
                 });
 
-
     }
+
 
     public void getSafetyIndexFromCom(final String id) {
 
@@ -152,6 +157,7 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void onNext(List<TypeInfo> value) {
+                        Log.e("TAG", "getSafetyIndexFromCom"+ value);
                         BarChart barChart1 = findViewById(R.id.chart_bar);
                         BarChartManager barChartManager1 = new BarChartManager(barChart1);
                         //设置x轴的数据
@@ -319,7 +325,7 @@ public class MainActivity extends Activity {
 
     private void intiData(final List<GatherDangerInfo> mGatherDangerInfo) {
         mGatherDangerInfo.addAll(mGatherDangerInfo);
-        OverlayManager mOverlayManager = new OverlayManager(mBaiduMap) {
+        final OverlayManager mOverlayManager = new OverlayManager(mBaiduMap) {
             @Override
             public List<OverlayOptions> getOverlayOptions() {
                 List<OverlayOptions> options = new ArrayList<>();
@@ -366,7 +372,12 @@ public class MainActivity extends Activity {
             }
         };
         mOverlayManager.addToMap();
-
+        mBaiduMap.setOnMapLoadedCallback(new BaiduMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                mOverlayManager.zoomToSpan();
+            }
+        });
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -383,8 +394,8 @@ public class MainActivity extends Activity {
                         // 将marker所在的经纬度的信息转化成屏幕上的坐标
                         final LatLng ll = marker.getPosition();
                         Point p = mBaiduMap.getProjection().toScreenLocation(ll);
-                        p.y -= 10;
-                        p.x -= 25;
+                        p.y -= 30;
+                        p.x -= 30;
                         LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
                         // 为弹出的InfoWindow添加点击事件
                         BitmapDescriptor btv = BitmapDescriptorFactory.fromView(location);
@@ -418,7 +429,7 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
-        mOverlayManager.zoomToSpan();
+
     }
 
     private void initView() {

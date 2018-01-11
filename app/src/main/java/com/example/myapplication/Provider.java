@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.util.Log;
+
 import com.example.myapplication.Info.CompanyInfo;
 import com.example.myapplication.Info.GatherDangerInfo;
 import com.example.myapplication.Info.HiddenInfo;
@@ -43,6 +45,7 @@ class Provider {
                                 ArrayList<HashMap<String, Object>> result = WebServiceUtil.getWebServiceMsg(keys2, values2,
                                         "gatherDangerLEC", WebServiceUtil.HUIWEI_SAFE_URL, WebServiceUtil.HUIWEI_NAMESPACE);
                                 if (result.size() >0) {
+                                    Log.e("TAG", "gatherDangerLEC" );
                                     List<GatherDangerInfo> list = GatherDangerInfo.fromMap(result);
                                     e.onNext(list);
                                 }else {
@@ -75,12 +78,13 @@ class Provider {
                                 Object values2[] = {uEmid, "", lastYearTime, nowTime, "0", "0"};
                                 ArrayList<HashMap<String, Object>> result = WebServiceUtil.getWebServiceMsg(keys2, values2,
                                         methodName, WebServiceUtil.HUIWEI_SAFE_URL, WebServiceUtil.HUIWEI_NAMESPACE);
-                                if (result != null) {
+                                if (result.size()>0) {
+                                    Log.e("TAG", methodName );
                                     List<RiskLevelInfo> list = RiskLevelInfo.fromMap(result);
                                     e.onNext(list);
 
                                 }
-                                e.onComplete();
+
                             }
 
 
@@ -112,12 +116,14 @@ class Provider {
                                     Object values2[] = {Comid, str1, str2, "7"};
                                     ArrayList<HashMap<String, Object>> result = WebServiceUtil.getWebServiceMsg(keys2, values2,
                                             "getSafetyIndexFromCom", WebServiceUtil.HUIWEI_SAFE_URL, WebServiceUtil.HUIWEI_NAMESPACE);
-                                    if (result != null) {
+                                    if (result.size() >0) {
+                                        Log.e("TAG",  "getSafetyIndexFromCom" );
                                         TypeInfo info = new TypeInfo();
                                         info.setData(str1);
                                         info.setTypeValue(String.valueOf(result.get(0).get("comindex")));
                                         list.add(info);
                                     }
+                                    Thread.sleep(500);
                                 }
                                 e.onNext(list);
                                 e.onComplete();
@@ -143,6 +149,7 @@ class Provider {
                                 ArrayList<HashMap<String, Object>> result = WebServiceUtil.getWebServiceMsg(keys2, values2,
                                         "getHiddenIllnessAccountObject", WebServiceUtil.HUIWEI_SAFE_URL, WebServiceUtil.HUIWEI_NAMESPACE);
                                 if (result != null) {
+                                    Log.e("TAG",  "getHiddenIllnessAccountObject" );
                                     List<HiddenInfo> list = HiddenInfo.fromMap(result);
                                     e.onNext(list);
                                 }
