@@ -46,6 +46,7 @@
         </activity>
         <activity
             android:name=".CompanyListActivity"
+            android:label="公司列表"
             android:screenOrientation="landscape" />
 
     </application>

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -28,8 +27,10 @@ import com.example.myapplication.Info.GatherDangerInfo;
 import com.example.myapplication.Info.HiddenInfo;
 import com.example.myapplication.Info.RiskLevelInfo;
 import com.example.myapplication.Info.TypeInfo;
+import com.example.myapplication.Info.UserInfo;
 import com.example.myapplication.Util.BarChartManager;
 import com.example.myapplication.Util.OverlayManager;
+import com.example.myapplication.Util.SharedPreferenceUtil;
 import com.github.androidprogresslayout.ProgressLayout;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -37,14 +38,12 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -58,6 +57,9 @@ public class MainActivity extends Activity {
     private PieChart mChart2;
     private PieChart mChart3;
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private CompanyInfo info;
+    private UserInfo userInfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,16 @@ public class MainActivity extends Activity {
         progressLayout.showProgress();
         //初始化控件
         initView();
-        Provider.getDangerDetailTime(75908, "", 0, 0)
+        String userInfoString = SharedPreferenceUtil.getString(this, AppConstant.SP_KEY_USER_INFO);
+        String companyInfoString = SharedPreferenceUtil.getString(this, AppConstant.SP_KEY_COMPANY_INFO);
+        try {
+            userInfo = UserInfo.fromString(userInfoString);
+             info = CompanyInfo.fromString(companyInfoString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Provider.getDangerDetailTime(Integer.parseInt(info.getEmid()), "", 0, 0)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<List<GatherDangerInfo>>() {
@@ -96,7 +107,7 @@ public class MainActivity extends Activity {
 
                     }
                 });
-        Provider.getCompanyList("1619")
+        Provider.getCompanyList(userInfo.getUid())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<CompanyInfo>() {
@@ -171,8 +182,6 @@ public class MainActivity extends Activity {
                     }
 
                 });
-
-
     }
 
     public void getHiddenIllnessAccountObject(final String uEmid) {
@@ -198,6 +207,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void onNext(List<HiddenInfo> value) {
                         TextView tv = findViewById(R.id.tv);
+
                         String result = "";
                         for (HiddenInfo map : value) {
                             result = result + map.getObjOrgName() + "本周发现隐患" + map.getTroubleCount()
@@ -234,7 +244,7 @@ public class MainActivity extends Activity {
         pieChart.setRotationEnabled(true); // 可以手动旋转
         pieChart.setUsePercentValues(true);  //显示成百分比
         pieChart.getDescription().setText(label);
-        pieChart.getDescription().setTextSize(5f);
+        pieChart.getDescription().setTextSize(10f);
         pieChart.animateXY(1000, 1000); //设置动画
         pieChart.setDrawEntryLabels(false);//设置饼上标签
 
@@ -249,7 +259,7 @@ public class MainActivity extends Activity {
         l.setYEntrySpace(0f);
         l.setYOffset(0f);
         l.setFormSize(4f);
-        l.setTextSize(1f);
+        l.setTextSize(7f);
         l.setFormToTextSpace(1f);
 
 
@@ -356,7 +366,7 @@ public class MainActivity extends Activity {
             }
         };
         mOverlayManager.addToMap();
-        mOverlayManager.zoomToSpan();
+
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -374,7 +384,7 @@ public class MainActivity extends Activity {
                         final LatLng ll = marker.getPosition();
                         Point p = mBaiduMap.getProjection().toScreenLocation(ll);
                         p.y -= 10;
-                        p.x -= 5;
+                        p.x -= 25;
                         LatLng llInfo = mBaiduMap.getProjection().fromScreenLocation(p);
                         // 为弹出的InfoWindow添加点击事件
                         BitmapDescriptor btv = BitmapDescriptorFactory.fromView(location);
@@ -408,6 +418,7 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
+        mOverlayManager.zoomToSpan();
     }
 
     private void initView() {

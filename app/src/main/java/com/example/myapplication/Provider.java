@@ -31,7 +31,7 @@ class Provider {
 
     static Observable<List<GatherDangerInfo>>
     getDangerDetailTime(final int Emid, final String induval, final int hurttypeid, final int insid) {
-        return Observable.interval(10, 10 * 1000, TimeUnit.MILLISECONDS)
+        return Observable.interval(10, 1000*60*60, TimeUnit.MILLISECONDS)
                 .flatMap(new Function<Long, ObservableSource<List<GatherDangerInfo>>>() {
                     @Override
                     public ObservableSource<List<GatherDangerInfo>> apply(Long aLong) throws Exception {
@@ -56,7 +56,7 @@ class Provider {
     }
     static Observable<List<RiskLevelInfo>>
     getHiddenIllnessInfoTime(final String uEmid, final String methodName) {
-        return Observable.interval(10, 20 * 1000, TimeUnit.MILLISECONDS)
+        return Observable.interval(200, 1000*60*60, TimeUnit.MILLISECONDS)
                 .flatMap(new Function<Long, ObservableSource<List<RiskLevelInfo>>>() {
                     @Override
                     public ObservableSource<List<RiskLevelInfo>> apply(Long aLong) throws Exception {
@@ -90,7 +90,7 @@ class Provider {
 
     }
     static Observable<List<TypeInfo>> getSafetyIndexFromComTime(final String Comid) {
-        return Observable.interval(0, 10 * 1000, TimeUnit.MILLISECONDS)
+        return Observable.interval(300, 1000*60*60, TimeUnit.MILLISECONDS)
                 .flatMap(new Function<Long, ObservableSource<List<TypeInfo>>>() {
                     @Override
                     public ObservableSource<List<TypeInfo>> apply(Long aLong) throws Exception {
@@ -131,7 +131,7 @@ class Provider {
     getHiddenIllnessAccountObjectTime(final String uEmid, final String hgrade,
                                       final String examStart, final String examEnd,
                                       final String areaRangeID, final String objOrgId) {
-        return Observable.interval(10, 10 * 1000, TimeUnit.MILLISECONDS)
+        return Observable.interval(400, 1000*60*60, TimeUnit.MILLISECONDS)
                 .flatMap(new Function<Long, ObservableSource<List<HiddenInfo>>>() {
                     @Override
                     public ObservableSource<List<HiddenInfo>> apply(Long aLong) throws Exception {

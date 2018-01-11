@@ -55,7 +55,7 @@
                     android:id="@+id/spread_pie_chart2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="6" />
+                    android:layout_weight="4" />
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/spread_pie_chart3"
@@ -81,7 +81,7 @@
             android:ellipsize="marquee"
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
-            android:maxLines="1"
+            android:singleLine="true"
             android:text="@string/textContent"
             android:textColor="#3B3B3B"
             android:textSize="9sp" />
