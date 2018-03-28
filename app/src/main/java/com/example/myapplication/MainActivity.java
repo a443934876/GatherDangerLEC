@@ -238,14 +238,14 @@ public class MainActivity extends Activity {
 
     }
 
-    private void showChart(PieChart pieChart, PieData pieData, String label, int leftSize, int rightSize) {
+    private void showChart(PieChart pieChart, PieData pieData, String label) {
 //        pieChart.setHoleColorTransparent(true);
         pieChart.setHoleRadius(60f);  //半径
         pieChart.setTransparentCircleRadius(64f); // 半透明圈
         //pieChart.setHoleRadius(0)  //实心圆
         pieChart.setDrawCenterText(true);  //饼状图中间可以添加文字
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setExtraOffsets(leftSize, 0, rightSize, 0);
+//        pieChart.setExtraOffsets(leftSize, 0, rightSize, 0);
         pieChart.setRotationAngle(0); // 初始旋转角度
         pieChart.setRotationEnabled(true); // 可以手动旋转
         pieChart.setUsePercentValues(true);  //显示成百分比
@@ -490,7 +490,7 @@ public class MainActivity extends Activity {
                             list.add(info);
                         }
                         PieData mPieData1 = getPieData(list);
-                        showChart(mChart1, mPieData1, "危险等级图", 0, 0);
+                        showChart(mChart1, mPieData1, "危险等级图");
                     }
 
                     @Override
@@ -527,7 +527,7 @@ public class MainActivity extends Activity {
                             list.add(info);
                         }
                         PieData mPieData = getPieData(list);
-                        showChart(mChart2, mPieData, "隐患分类图", 40, 15);
+                        showChart(mChart2, mPieData, "隐患分类图");
                     }
 
                     @Override
@@ -562,7 +562,7 @@ public class MainActivity extends Activity {
                             list.add(info);
                         }
                         PieData mPieData = getPieData(list);
-                        showChart(mChart3, mPieData, "伤害类别图", 0, 0);
+                        showChart(mChart3, mPieData, "伤害类别图");
                     }
 
                     @Override

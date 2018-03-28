@@ -46,6 +46,14 @@ class Provider {
                                         "gatherDangerLEC", WebServiceUtil.HUIWEI_SAFE_URL, WebServiceUtil.HUIWEI_NAMESPACE);
                                 if (result.size() >0) {
                                     Log.e("TAG", "gatherDangerLEC" );
+                                    for (int i = 0 ;i< result.size();i++){
+                                        Log.e("TAG", "unname: "+result.get(i).get("unname")+"----"+
+                                                "lecgoal: "+result.get(i).get("lecgoal")+"----"+
+                                                "lon: "+result.get(i).get("lon")+"----"+
+                                                "lat: "+result.get(i).get("lat") );
+                                    }
+
+
                                     List<GatherDangerInfo> list = GatherDangerInfo.fromMap(result);
                                     e.onNext(list);
                                 }else {

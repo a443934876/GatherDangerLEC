@@ -4,7 +4,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="textContent">漳州柏华木业有限公司本周发现隐患6条，其中重大1条，已整改3条。 漳州柏华木业有限公司本周发现隐患6条，其中重大1条，已整改3条。</string>
+    <string name="textContent">隐患排查暂无数据</string>
     <string name="headerImage">标题图片</string>
     <string name="userName">请输入用户名</string>
 </resources>

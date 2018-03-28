@@ -1,7 +1,7 @@
 package com.example.myapplication;
 
 /**
- * Created by mini on 17/5/21.
+ *
  */
 
 public class AppConstant {

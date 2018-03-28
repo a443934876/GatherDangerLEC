@@ -8,7 +8,7 @@ import java.util.List;
 import io.reactivex.subjects.PublishSubject;
 
 /**
- * Created by cqj on 2017-05-22.
+ *
  */
 public abstract class BaseHolder<T> extends RecyclerView.ViewHolder{
 

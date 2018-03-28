@@ -176,8 +176,7 @@ public class WebServiceUtil {
         return datas;
     }
 
-    public static ArrayList<HashMap<String, Object>> getWebServiceMsg(
-            String[] keys, Object[] values, String methodName, String url, String nameSpace) throws Exception {
+    public static ArrayList<HashMap<String, Object>> getWebServiceMsg(String[] keys, Object[] values, String methodName, String url, String nameSpace) throws Exception {
         String actionUrl = nameSpace + methodName;
         SoapObject so = new SoapObject(nameSpace, methodName);
         if (keys != null) {
@@ -197,11 +196,12 @@ public class WebServiceUtil {
         SoapObject result = null;
         try {
             result = (SoapObject) envelope.bodyIn;
+
         } catch (Exception e) {
             SoapFault soaF = (SoapFault) envelope.bodyIn;
             System.out.println("FaultString:" + soaF.faultstring);
         }
-        ArrayList<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();
+        ArrayList<HashMap<String, Object>> datas = new ArrayList<>();
         if (result != null) {
             String resultStr = "";
             try {

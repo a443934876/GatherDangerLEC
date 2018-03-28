@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,30 +11,33 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:src="@mipmap/banner"/>
+
     <LinearLayout
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="95dp"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="155dp"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
-                android:background="#00000000"
                 android:id="@+id/zhanghao_edt"
                 android:layout_width="140dp"
                 android:layout_height="30dp"
-                android:textSize="12sp"
-                android:hint="@string/userName" />
+                android:background="#00000000"
+                android:hint="@string/userName"
+                android:textSize="12sp" />
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
             <EditText
                 android:id="@+id/mima_edt"
@@ -45,45 +49,45 @@
                 android:textSize="12sp" />
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/jzmm"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:background="@mipmap/bnt02"
                 android:clickable="true"
                 android:onClick="jzmm" />
         </LinearLayout>
 
 
-
         <LinearLayout
-            android:layout_marginTop="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
 
             <EditText
-                android:background="#00000000"
-                android:textSize="12sp"
                 android:id="@+id/yzm_edt"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
+                android:background="#00000000"
                 android:ems="4"
                 android:hint="验证码"
-                android:maxLength="6" />
+                android:maxLength="6"
+                android:textSize="12sp" />
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/yzm_iv"
                 android:layout_width="90dp"
                 android:layout_height="25dp"
+                android:layout_gravity="center"
                 android:clickable="true"
                 android:onClick="changeYzm" />
         </LinearLayout>
+
         <Button
-            android:layout_marginTop="10dp"
             android:id="@+id/main_loginbtn"
             android:layout_width="90dp"
             android:layout_height="30dp"
+            android:layout_marginTop="10dp"
             android:background="@mipmap/button"
             android:text="登　录"
             android:textSize="13sp" />
